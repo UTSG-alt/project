@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perekapan Inspeksi & Servis</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+<h1>Perekapan Inspeksi & Servis</h1>
+</header>
+
+
+<section class="form-section">
+<h2>Form Input</h2>
+<form id="inspectionForm">
+<label>Nama Operator</label>
+<input type="text" id="operator" required>
+
+
+<label>No. Unit</label>
+<input type="text" id="unit" required>
+
+
+<label>Jenis Inspeksi</label>
+<select id="jenis">
+<option value="Inspeksi Harian">Inspeksi Harian</option>
+<option value="Servis 250 Jam">Servis 250 Jam</option>
+<option value="Servis 500 Jam">Servis 500 Jam</option>
+<option value="Servis 1000 Jam">Servis 1000 Jam</option>
+</select>
+
+
+<label>Catatan</label>
+<textarea id="catatan"></textarea>
+
+
+<button type="submit">Simpan</button>
+</form>
+</section>
+
+
+<section class="table-section">
+<h2>Data Rekap</h2>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>No. Unit</th>
+<th>Jenis</th>
+<th>Catatan</th>
+<th>Waktu</th>
+</tr>
+</thead>
+<tbody id="dataBody"></tbody>
+</table>
+</section>
+
+
+<script src="app.js"></script>
+</body>
+</html>
