@@ -1,46 +1,125 @@
 body {
-font-family: Arial, sans-serif;
-margin: 0;
-padding: 0;
-background: #f2f2f2;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000;
 }
-header {
-background: #007bff;
-color: white;
-padding: 15px;
-text-align: center;
+
+.form-container {
+    max-width: 1250px;
+    padding: 25px;
+    margin: auto;
+    background: white;
+    margin-top: 40px;
+    border-radius: 15px;
+    border: 2px solid #ffd700;
 }
-.form-section, .table-section {
-background: white;
-margin: 20px;
-padding: 20px;
-border-radius: 10px;
+
+.form-header {
+    background: #ffd700;
+    padding: 18px;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    margin-bottom: 20px;
 }
-input, select, textarea {
-width: 100%;
-padding: 10px;
-margin-top: 5px;
-margin-bottom: 15px;
-border-radius: 5px;
-border: 1px solid #999;
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
 }
-button {
-width: 100%;
-padding: 10px;
-background: #007bff;
-color: white;
-border: none;
-border-radius: 5px;
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: black;
 }
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    background: #ffffff;
+    color: black;
+}
+
+hr {
+    margin: 25px 0;
+    border: 0.5px solid #ccc;
+}
+
+.section-title {
+    margin-bottom: 10px;
+    color: black;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background: #ffd700;
+    border: none;
+    padding: 8px 16px;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
 table {
-width: 100%;
-border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
-th, td {
-padding: 10px;
-border: 1px solid #ccc;
-}
+
 th {
-background: #007bff;
-color: white;
+    background: #ffe680;
+    padding: 10px;
+    text-align: center;
+    color: black;
+    border-bottom: 2px solid #ffd700;
+}
+
+td {
+    padding: 8px;
+}
+
+td input, td select {
+    background: #fff9cc;
+    border: 1px solid #e6c200;
+    color: black;
+}
+
+.hapus-btn {
+    background: #ff4b4b;
+    padding: 6px 12px;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.submit-container {
+    text-align: right;
+    margin-top: 25px;
+}
+
+.btn-submit {
+    background: #ffd700;
+    padding: 12px 25px;
+    border: none;
+    color: black;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
 }

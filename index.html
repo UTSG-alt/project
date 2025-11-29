@@ -1,63 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perekapan Inspeksi & Servis</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Inspection Report</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-<h1>Perekapan Inspeksi & Servis</h1>
-</header>
 
+<div class="form-container">
 
-<section class="form-section">
-<h2>Form Input</h2>
-<form id="inspectionForm">
-<label>Nama Operator</label>
-<input type="text" id="operator" required>
+    <div class="form-header">
+        <h2>📝 Form Inspection Report</h2>
+    </div>
 
+    <form id="inspectionForm">
 
-<label>No. Unit</label>
-<input type="text" id="unit" required>
+        <div class="grid-2">
+            <div>
+                <label>Date</label>
+                <input type="date" value="2025-11-29">
+            </div>
+            <div>
+                <label>Site</label>
+                <input type="text">
+            </div>
 
+            <div>
+                <label>Code Unit</label>
+                <input type="text">
+            </div>
+            <div>
+                <label>Hour Meter</label>
+                <input type="number">
+            </div>
 
-<label>Jenis Inspeksi</label>
-<select id="jenis">
-<option value="Inspeksi Harian">Inspeksi Harian</option>
-<option value="Servis 250 Jam">Servis 250 Jam</option>
-<option value="Servis 500 Jam">Servis 500 Jam</option>
-<option value="Servis 1000 Jam">Servis 1000 Jam</option>
-</select>
+            <div>
+                <label>Inspected By</label>
+                <input type="text">
+            </div>
+            <div>
+                <label>Priority</label>
+                <input type="text">
+            </div>
+        </div>
 
+        <hr>
 
-<label>Catatan</label>
-<textarea id="catatan"></textarea>
+        <h3 class="section-title">🛠️ Detail Inspection</h3>
 
+        <div class="btn-group">
+            <button type="button" class="btn" onclick="addRow()">+ Tambah Item</button>
+        </div>
 
-<button type="submit">Simpan</button>
-</form>
-</section>
+        <div class="table-container">
+            <table id="inspectionTable">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Condition</th>
+                        <th>Gambar</th>
+                        <th>Part Number</th>
+                        <th>Nama Barang</th>
+                        <th>Qty</th>
+                        <th>Satuan</th>
+                        <th>Component Group</th>
+                        <th>Sub Component</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="file"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="number"></td>
+                        <td><input type="text"></td>
+                        <td>
+                            <select>
+                                <option>Pilih Bab...</option>
+                                <option>Engine</option>
+                                <option>Transmission</option>
+                                <option>Hydraulic</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select>
+                                <option>Pilih Sub...</option>
+                                <option>Filter</option>
+                                <option>Hose</option>
+                                <option>Pump</option>
+                            </select>
+                        </td>
+                        <td><button type="button" class="hapus-btn" onclick="deleteRow(this)">Hapus</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
+        <div class="submit-container">
+            <button type="submit" class="btn-submit">Kirim</button>
+        </div>
 
-<section class="table-section">
-<h2>Data Rekap</h2>
-<table>
-<thead>
-<tr>
-<th>Operator</th>
-<th>No. Unit</th>
-<th>Jenis</th>
-<th>Catatan</th>
-<th>Waktu</th>
-</tr>
-</thead>
-<tbody id="dataBody"></tbody>
-</table>
-</section>
+    </form>
+</div>
 
+<script src="script.js"></script>
 
-<script src="app.js"></script>
 </body>
 </html>
