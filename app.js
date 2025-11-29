@@ -1,3 +1,8 @@
+function toggleSidebar() {
+    const sidebar = document.querySelector(".sidebar");
+    sidebar.classList.toggle("closed");
+}
+
 function addRow() {
     const tbody = document.getElementById("tableBody");
     let row = document.createElement("tr");

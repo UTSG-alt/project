@@ -2,26 +2,99 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #ffffff;
-    color: #000;
 }
 
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background-color: #FFD700;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 0.3s;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
+.sidebar.closed {
+    width: 60px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: black;
+    margin: 0 0 20px 0;
+}
+
+.sidebar .toggle-btn {
+    position: absolute;
+    top: 15px;
+    right: -20px;
+    background: #ff4b4b;
+    color: white;
+    border-radius: 50%;
+    padding: 6px;
+    cursor: pointer;
+    border: none;
+}
+
+/* MENU */
+.menu-item {
+    padding: 15px 20px;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu-item:hover {
+    background-color: #ffe769;
+}
+
+.menu-item i {
+    font-size: 20px;
+}
+
+.menu-text {
+    transition: 0.2s;
+}
+
+.sidebar.closed .menu-text {
+    opacity: 0;
+}
+
+/* CONTENT AREA */
+.content {
+    margin-left: 260px;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.sidebar.closed ~ .content {
+    margin-left: 80px;
+}
+
+/* FORM CONTAINER */
 .form-container {
     max-width: 1250px;
     padding: 25px;
     margin: auto;
-    background: white;
-    margin-top: 40px;
+    background: #fff7c5;
     border-radius: 15px;
-    border: 2px solid #ffd700;
+    border: 2px solid #FFD700;
 }
 
 .form-header {
-    background: #ffd700;
+    background: #FFD700;
     padding: 18px;
     border-radius: 10px;
     text-align: center;
-    color: black;
     margin-bottom: 20px;
+    color: black;
+    font-weight: bold;
 }
 
 .grid-2 {
@@ -33,7 +106,7 @@ body {
 label {
     display: block;
     margin-bottom: 4px;
-    font-weight: bold;
+    font-weight: 600;
     color: black;
 }
 
@@ -41,35 +114,34 @@ input, select {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid #bbb;
-    background: #ffffff;
+    border: 1.3px solid #D9B300;
+    background: white;
     color: black;
 }
 
 hr {
     margin: 25px 0;
-    border: 0.5px solid #ccc;
+    border: 0.5px solid #EAC800;
 }
 
 .section-title {
     margin-bottom: 10px;
+    font-weight: bold;
     color: black;
 }
 
-.btn-group {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
 .btn {
-    background: #ffd700;
+    background: #FFD700;
     border: none;
     padding: 8px 16px;
     color: black;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+}
+
+.btn:hover {
+    background: #ffef7e;
 }
 
 .table-container {
@@ -82,21 +154,14 @@ table {
 }
 
 th {
-    background: #ffe680;
+    background: #FFD700;
     padding: 10px;
     text-align: center;
-    color: black;
-    border-bottom: 2px solid #ffd700;
+    font-weight: bold;
 }
 
 td {
     padding: 8px;
-}
-
-td input, td select {
-    background: #fff9cc;
-    border: 1px solid #e6c200;
-    color: black;
 }
 
 .hapus-btn {
@@ -108,13 +173,8 @@ td input, td select {
     cursor: pointer;
 }
 
-.submit-container {
-    text-align: right;
-    margin-top: 25px;
-}
-
 .btn-submit {
-    background: #ffd700;
+    background: #FFD700;
     padding: 12px 25px;
     border: none;
     color: black;
@@ -122,4 +182,5 @@ td input, td select {
     font-size: 16px;
     cursor: pointer;
     font-weight: bold;
+    float: right;
 }

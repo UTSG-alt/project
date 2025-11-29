@@ -3,108 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Inspection Report</title>
+    <title>Form Inspeksi</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="form-container">
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
-    <div class="form-header">
-        <h2>📝 Form Inspection Report</h2>
+    <h2>MENU</h2>
+    
+    <div class="menu-item" onclick="location.href='index.html'">
+        <i>📝</i> <span class="menu-text">Form Inspeksi</span>
     </div>
 
-    <form id="inspectionForm">
+    <div class="menu-item" onclick="location.href='service.html'">
+        <i>🔧</i> <span class="menu-text">Form Service</span>
+    </div>
 
-        <div class="grid-2">
-            <div>
-                <label>Date</label>
-                <input type="date" value="2025-11-29">
-            </div>
-            <div>
-                <label>Site</label>
-                <input type="text">
+    <div class="menu-item" onclick="location.href='history.html'">
+        <i>📚</i> <span class="menu-text">Histori</span>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+    <div class="form-container">
+
+        <div class="form-header">📝 Form Inspection Report</div>
+
+        <form>
+            <div class="grid-2">
+                <div>
+                    <label>Date</label>
+                    <input type="date">
+                </div>
+                <div>
+                    <label>Site</label>
+                    <input type="text">
+                </div>
+
+                <div>
+                    <label>Code Unit</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label>Hour Meter</label>
+                    <input type="number">
+                </div>
+
+                <div>
+                    <label>Inspected By</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label>Priority</label>
+                    <input type="number" min="1" max="3">
+                </div>
             </div>
 
-            <div>
-                <label>Code Unit</label>
-                <input type="text">
-            </div>
-            <div>
-                <label>Hour Meter</label>
-                <input type="number">
-            </div>
+            <hr>
 
-            <div>
-                <label>Inspected By</label>
-                <input type="text">
-            </div>
-            <div>
-                <label>Priority</label>
-                <input type="text">
-            </div>
-        </div>
+            <h3 class="section-title">🛠️ Detail Inspection</h3>
 
-        <hr>
-
-        <h3 class="section-title">🛠️ Detail Inspection</h3>
-
-        <div class="btn-group">
             <button type="button" class="btn" onclick="addRow()">+ Tambah Item</button>
-        </div>
 
-        <div class="table-container">
-            <table id="inspectionTable">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Condition</th>
-                        <th>Gambar</th>
-                        <th>Part Number</th>
-                        <th>Nama Barang</th>
-                        <th>Qty</th>
-                        <th>Satuan</th>
-                        <th>Component Group</th>
-                        <th>Sub Component</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="file"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="number"></td>
-                        <td><input type="text"></td>
-                        <td>
-                            <select>
-                                <option>Pilih Bab...</option>
-                                <option>Engine</option>
-                                <option>Transmission</option>
-                                <option>Hydraulic</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select>
-                                <option>Pilih Sub...</option>
-                                <option>Filter</option>
-                                <option>Hose</option>
-                                <option>Pump</option>
-                            </select>
-                        </td>
-                        <td><button type="button" class="hapus-btn" onclick="deleteRow(this)">Hapus</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Condition</th>
+                            <th>Gambar</th>
+                            <th>Part Number</th>
+                            <th>Nama Barang</th>
+                            <th>Qty</th>
+                            <th>Satuan</th>
+                            <th>Component Group</th>
+                            <th>Sub Component</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
 
-        <div class="submit-container">
-            <button type="submit" class="btn-submit">Kirim</button>
-        </div>
-
-    </form>
+            <button class="btn-submit">Kirim</button>
+        </form>
+    </div>
 </div>
 
 <script src="script.js"></script>
