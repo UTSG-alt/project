@@ -3,44 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 3</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #fff7cc;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #ff3b30;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 24px;
-        }
-        .content {
-            padding: 25px;
-        }
-        a {
-            color: #ff3b30;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+    <title>Histori</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-    Halaman 3
-</header>
+<!-- ======================= -->
+<!--        SIDEBAR          -->
+<!-- ======================= -->
+<div class="sidebar" id="sidebar">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
-<div class="content">
-    <h2>Ini adalah halaman ketiga</h2>
-    <p>Tempat untuk konten halaman 3. Kamu bisa mengisi dengan data, laporan, atau menu tambahan lain.</p>
+    <h2>MENU</h2>
+    
+    <div class="menu-item" onclick="location.href='index.html'">
+        <i>📝</i> <span class="menu-text">Form Inspeksi</span>
+    </div>
 
-    <p><a href="page2.html">⬅ Kembali ke Halaman 2</a></p>
-    <p><a href="index.html">Kembali ke Halaman Utama</a></p>
+    <div class="menu-item" onclick="location.href='service.html'">
+        <i>🔧</i> <span class="menu-text">Form Service</span>
+    </div>
+
+    <div class="menu-item" onclick="location.href='history.html'">
+        <i>📚</i> <span class="menu-text">Histori</span>
+    </div>
 </div>
+
+<!-- ======================= -->
+<!--        CONTENT          -->
+<!-- ======================= -->
+<div class="content">
+    <div class="form-container">
+
+        <div class="form-header">📚 History Report</div>
+
+        <h3 class="section-title">Riwayat Inspeksi & Service</h3>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Unit</th>
+                        <th>HM</th>
+                        <th>Jenis</th>
+                        <th>Nama</th>
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody">
+
+                    <!-- DATA DUMMY (bisa kamu ganti nanti) -->
+                    <tr>
+                        <td>2025-02-01</td>
+                        <td>DT-219</td>
+                        <td>12.450</td>
+                        <td>Inspeksi</td>
+                        <td>Daniel</td>
+                        <td><button class="btn">Lihat</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>2025-02-10</td>
+                        <td>DT-221</td>
+                        <td>9.820</td>
+                        <td>PM 500</td>
+                        <td>Agus</td>
+                        <td><button class="btn">Lihat</button></td>
+                    </tr>
+
+                    <tr>
+                        <td>2025-02-21</td>
+                        <td>EX-144</td>
+                        <td>18.300</td>
+                        <td>Inspeksi</td>
+                        <td>Daniel</td>
+                        <td><button class="btn">Lihat</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function toggleSidebar() {
+    let sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("closed");
+}
+</script>
 
 </body>
 </html>

@@ -3,44 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 2</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #fff7cc; /* kuning lembut */
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #ff3b30; /* merah */
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 24px;
-        }
-        .content {
-            padding: 25px;
-        }
-        a {
-            color: #ff3b30;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+    <title>Form Service</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-    Halaman 2
-</header>
+<!-- ======================= -->
+<!--        SIDEBAR          -->
+<!-- ======================= -->
+<div class="sidebar" id="sidebar">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
 
-<div class="content">
-    <h2>Ini adalah halaman kedua</h2>
-    <p>Isi konten halaman 2 diletakkan di sini. Kamu bisa menambahkan tabel, card, grafik, atau teks sesuai kebutuhan.</p>
+    <h2>MENU</h2>
+    
+    <div class="menu-item" onclick="location.href='index.html'">
+        <i>📝</i> <span class="menu-text">Form Inspeksi</span>
+    </div>
 
-    <p><a href="index.html">⬅ Kembali ke Halaman Utama</a></p>
-    <p><a href="page3.html">Lanjut ke Halaman 3 ➜</a></p>
+    <div class="menu-item" onclick="location.href='service.html'">
+        <i>🔧</i> <span class="menu-text">Form Service</span>
+    </div>
+
+    <div class="menu-item" onclick="location.href='history.html'">
+        <i>📚</i> <span class="menu-text">Histori</span>
+    </div>
 </div>
+
+<!-- ======================= -->
+<!--        CONTENT          -->
+<!-- ======================= -->
+<div class="content">
+    <div class="form-container">
+
+        <div class="form-header">🔧 Form Service Report</div>
+
+        <form>
+            <div class="grid-2">
+                <div>
+                    <label>Date</label>
+                    <input type="date">
+                </div>
+
+                <div>
+                    <label>Service Type</label>
+                    <select>
+                        <option>Pilih...</option>
+                        <option>PM 250 Jam</option>
+                        <option>PM 500 Jam</option>
+                        <option>PM 1000 Jam</option>
+                        <option>PM 2000 Jam</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Unit Code</label>
+                    <input type="text">
+                </div>
+
+                <div>
+                    <label>Hour Meter</label>
+                    <input type="number">
+                </div>
+
+                <div>
+                    <label>Technician</label>
+                    <input type="text">
+                </div>
+
+                <div>
+                    <label>Priority</label>
+                    <input type="number" min="1" max="3">
+                </div>
+            </div>
+
+            <hr>
+
+            <h3 class="section-title">🛠️ Service Details</h3>
+
+            <button type="button" class="btn" onclick="addRow()">+ Tambah Item</button>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Parts Used</th>
+                            <th>Part Number</th>
+                            <th>Qty</th>
+                            <th>Satuan</th>
+                            <th>Component Group</th>
+                            <th>Sub Component</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <button class="btn-submit">Kirim</button>
+        </form>
+    </div>
+</div>
+
+<!-- ======================= -->
+<!--         SCRIPT          -->
+<!-- ======================= -->
+<script>
+function toggleSidebar() {
+    let sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("closed");
+}
+
+// ADD ROW
+function addRow() {
+    const tbody = document.getElementById("tableBody");
+    let row = document.createElement("tr");
+
+    row.innerHTML = `
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="number"></td>
+        <td><input type="text"></td>
+
+        <td>
+            <select>
+                <option>Pilih Bab...</option>
+                <option>Engine</option>
+                <option>Hydraulic</option>
+                <option>Electrical</option>
+            </select>
+        </td>
+
+        <td>
+            <select>
+                <option>Pilih Sub...</option>
+                <option>Filter</option>
+                <option>Pump</option>
+                <option>Hose</option>
+            </select>
+        </td>
+
+        <td>
+            <button class="hapus-btn" onclick="deleteRow(this)">Hapus</button>
+        </td>
+    `;
+
+    tbody.appendChild(row);
+}
+
+function deleteRow(button) {
+    button.parentElement.parentElement.remove();
+}
+</script>
 
 </body>
 </html>

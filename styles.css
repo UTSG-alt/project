@@ -1,10 +1,15 @@
+/* ============================ */
+/*        GLOBAL STYLE          */
+/* ============================ */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #ffffff;
 }
 
-/* SIDEBAR */
+/* ============================ */
+/*            SIDEBAR           */
+/* ============================ */
 .sidebar {
     width: 240px;
     height: 100vh;
@@ -15,6 +20,7 @@ body {
     transition: 0.3s;
     padding-top: 20px;
     overflow: hidden;
+    box-shadow: 3px 0 6px rgba(0,0,0,0.25);
 }
 
 .sidebar.closed {
@@ -25,6 +31,7 @@ body {
     text-align: center;
     color: black;
     margin: 0 0 20px 0;
+    font-weight: bold;
 }
 
 .sidebar .toggle-btn {
@@ -39,7 +46,7 @@ body {
     border: none;
 }
 
-/* MENU */
+/* MENU ITEM */
 .menu-item {
     padding: 15px 20px;
     cursor: pointer;
@@ -66,7 +73,9 @@ body {
     opacity: 0;
 }
 
-/* CONTENT AREA */
+/* ============================ */
+/*        CONTENT AREA          */
+/* ============================ */
 .content {
     margin-left: 260px;
     padding: 20px;
@@ -77,7 +86,9 @@ body {
     margin-left: 80px;
 }
 
-/* FORM CONTAINER */
+/* ============================ */
+/*        FORM CONTAINER        */
+/* ============================ */
 .form-container {
     max-width: 1250px;
     padding: 25px;
@@ -97,6 +108,7 @@ body {
     font-weight: bold;
 }
 
+/* GRID INPUT */
 .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -119,17 +131,20 @@ input, select {
     color: black;
 }
 
+/* GARIS */
 hr {
     margin: 25px 0;
     border: 0.5px solid #EAC800;
 }
 
+/* SECTION TITLE */
 .section-title {
     margin-bottom: 10px;
     font-weight: bold;
     color: black;
 }
 
+/* BUTTON */
 .btn {
     background: #FFD700;
     border: none;
@@ -144,6 +159,7 @@ hr {
     background: #ffef7e;
 }
 
+/* TABLE */
 .table-container {
     overflow-x: auto;
 }
@@ -164,6 +180,7 @@ td {
     padding: 8px;
 }
 
+/* DELETE BUTTON */
 .hapus-btn {
     background: #ff4b4b;
     padding: 6px 12px;
@@ -173,6 +190,7 @@ td {
     cursor: pointer;
 }
 
+/* SUBMIT BUTTON */
 .btn-submit {
     background: #FFD700;
     padding: 12px 25px;
