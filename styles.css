@@ -96,3 +96,30 @@ tbody td{ padding:8px; border-bottom:1px solid #f1f1f1; vertical-align:middle; }
   .sidebar .menu-item{ display:inline-block; margin-right:6px; }
   .modal{ padding:12px; }
 }
+
+/* ========== STYLE LAIN ========== */
+.sidebar { ... }
+.menu-item { ... }
+.form-container { ... }
+.table-container { ... }
+
+/* ========== TAMBAHKAN DI BAWAH SINI ========== */
+.brand {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.brand h2, .brand h3 {
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-weight: bold;
+}
+
+.brand h2 {
+    font-size: 18px;
+}
+
+.brand h3 {
+    font-size: 14px;
+}
