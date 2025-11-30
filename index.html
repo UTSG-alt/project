@@ -1,100 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Inspeksi</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — Inspeksi & Service</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
+  <div class="sidebar" id="sidebar">
     <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-
     <h2>MENU</h2>
-    
-    <div class="menu-item" onclick="location.href='index.html'">
-        <i>📝</i> <span class="menu-text">Form Inspeksi</span>
+    <a class="menu-item" href="index.html">📊 Dashboard</a>
+    <a class="menu-item" href="form.html">📝 Form</a>
+    <a class="menu-item" href="history.html">📚 Histori</a>
+  </div>
+
+  <div class="content">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+      <div class="filters">
+        <label>Range:
+          <select id="dashboardRange">
+            <option value="daily">Harian</option>
+            <option value="weekly">Mingguan</option>
+            <option value="monthly" selected>Bulanan</option>
+          </select>
+        </label>
+      </div>
     </div>
 
-    <div class="menu-item" onclick="location.href='service.html'">
-        <i>🔧</i> <span class="menu-text">Form Service</span>
+    <div class="cards">
+      <div class="card">
+        <h3>Service</h3>
+        <canvas id="serviceChart" height="180"></canvas>
+      </div>
+
+      <div class="card">
+        <h3>Inspection</h3>
+        <canvas id="inspectionChart" height="180"></canvas>
+      </div>
     </div>
 
-    <div class="menu-item" onclick="location.href='history.html'">
-        <i>📚</i> <span class="menu-text">Histori</span>
+    <div style="margin-top:18px;">
+      <p class="small">Data diambil dari penyimpanan lokal (localStorage). Baru ada data? isi form di menu <strong>Form</strong>.</p>
     </div>
-</div>
+  </div>
 
-<!-- CONTENT -->
-<div class="content">
-    <div class="form-container">
-
-        <div class="form-header">📝 Form Inspection Report</div>
-
-        <form>
-            <div class="grid-2">
-                <div>
-                    <label>Date</label>
-                    <input type="date">
-                </div>
-                <div>
-                    <label>Site</label>
-                    <input type="text">
-                </div>
-
-                <div>
-                    <label>Code Unit</label>
-                    <input type="text">
-                </div>
-                <div>
-                    <label>Hour Meter</label>
-                    <input type="number">
-                </div>
-
-                <div>
-                    <label>Inspected By</label>
-                    <input type="text">
-                </div>
-                <div>
-                    <label>Priority</label>
-                    <input type="number" min="1" max="3">
-                </div>
-            </div>
-
-            <hr>
-
-            <h3 class="section-title">🛠️ Detail Inspection</h3>
-
-            <button type="button" class="btn" onclick="addRow()">+ Tambah Item</button>
-
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                            <th>Condition</th>
-                            <th>Gambar</th>
-                            <th>Part Number</th>
-                            <th>Nama Barang</th>
-                            <th>Qty</th>
-                            <th>Satuan</th>
-                            <th>Component Group</th>
-                            <th>Sub Component</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody"></tbody>
-                </table>
-            </div>
-
-            <button class="btn-submit">Kirim</button>
-        </form>
-    </div>
-</div>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
+  <script>
+    // render charts on load and on range change
+    document.getElementById('dashboardRange').addEventListener('change', () => {
+      renderDashboardCharts();
+    });
+    window.addEventListener('load', renderDashboardCharts);
+  </script>
 </body>
 </html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Form — Inspeksi / Service</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <h2>MENU</h2>
+    <a class="menu-item" href="index.html">📊 Dashboard</a>
+    <a class="menu-item active" href="form.html">📝 Form</a>
+    <a class="menu-item" href="history.html">📚 Histori</a>
+  </div>
+
+  <div class="content">
+    <div class="page-header"><h1>Form Entry</h1></div>
+
+    <div class="form-container">
+      <form id="mainForm">
+        <div class="grid-3">
+          <label>
+            Type
+            <select id="fieldType" required>
+              <option value="inspection">Inspection</option>
+              <option value="service">Service</option>
+              <option value="both">Service & Inspection</option>
+            </select>
+          </label>
+
+          <label>
+            Date
+            <input id="fieldDate" type="date" required>
+          </label>
+
+          <label>
+            Unit
+            <select id="fieldUnit" required>
+              <option value="">Pilih unit...</option>
+              <option>EX</option><option>WL</option><option>GR</option><option>DT</option><option>DZ</option>
+            </select>
+          </label>
+
+          <label>
+            Code Unit
+            <input id="fieldCode" type="text" placeholder="mis: EX-001">
+          </label>
+
+          <label>
+            Technician
+            <input id="fieldTech" type="text" placeholder="Nama teknisi">
+          </label>
+
+          <label>
+            Hour Meter
+            <input id="fieldHM" type="number" min="0">
+          </label>
+
+          <label id="labelTypeService">
+            Type of Service
+            <select id="fieldServiceType">
+              <option value="">Pilih...</option>
+              <option>250</option><option>500</option><option>1000</option><option>2000</option>
+            </select>
+          </label>
+
+          <label style="grid-column: span 3;">
+            Temuan
+            <textarea id="fieldFindings" rows="2" placeholder="Ringkasan temuan..."></textarea>
+          </label>
+        </div>
+
+        <hr>
+
+        <div class="section-title">Detail Inspection</div>
+        <div class="btn-row">
+          <button type="button" class="btn" onclick="addDetailRow()">+ Tambah Item</button>
+        </div>
+
+        <div class="table-container">
+          <table id="detailTable">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Condition</th>
+                <th>Component</th>
+                <th>Repair/Replace</th>
+                <th>Component Group</th>
+                <th>Sub Component</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:16px; display:flex; gap:10px; justify-content:flex-end;">
+          <button type="reset" class="btn secondary">Reset</button>
+          <button type="submit" class="btn-submit">Kirim</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // init form behaviour
+    window.addEventListener('load', () => {
+      setupFormBehavior();
+      // one initial empty detail row
+      addDetailRow();
+    });
+
+    document.getElementById('mainForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      submitMainForm();
+    });
+  </script>
+</body>
+</html>
