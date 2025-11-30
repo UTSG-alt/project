@@ -132,12 +132,11 @@
 
   <!-- SCRIPT -->
   <script>
-  // ========== GANTI INI DENGAN URL WEB APP APPS SCRIPT MU ==========
-  const API_URL = "https://script.google.com/macros/s/AKfycbziByDtbFVJWblAjrl_Xo3_OJgzSUwBzEZD1-rcOdhXdJj3CVW_ia-wQCMd7UqHYpyUVw/exec";
+  // ================== SESUAIKAN API_URL ==================
+  const API_URL = "https://script.google.com/macros/s/AKfycbyrmgMSm52XT6oPNHbdLl8xkspCF1ob2LA9w0Uo6Qk_tQpPqne6KY5cYcqrtMjorPpl2w/exec";
+  // ======================================================
 
-  // =============================================================
-
-  // util: toggle sidebar (assume function exists globally in script.js; define if not)
+  // util: toggle sidebar
   function toggleSidebar(){
     const sb = document.getElementById('sidebar');
     sb.classList.toggle('closed');
@@ -201,10 +200,12 @@
     try {
       const res = await fetch(API_URL, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
       const j = await res.json();
-      if(j && j.status === 'success'){
+      console.log('POST response:', j);
+      if(j && (j.status === 'success' || j === 'OK' || j.result === 'success')){
         alert('Jadwal berhasil disimpan ke Google Sheets.');
         // refresh table
         loadDrafts();
@@ -214,14 +215,15 @@
         updateServiceTypeVisibility();
       } else {
         alert('Respon server: ' + JSON.stringify(j));
+        console.warn('Unexpected POST response', j);
       }
     } catch (err){
-      console.error(err);
+      console.error('Error POST:', err);
       alert('Gagal menyimpan jadwal. Cek console untuk detail.');
     }
   }
 
-  // load drafts via GET
+  // load drafts via GET (tolerant terhadap format response)
   async function loadDrafts(){
     if(!API_URL || API_URL === 'PASTE_API_URL_KAMU_HERE'){
       const tbody = document.querySelector('#draftTable tbody');
@@ -232,10 +234,43 @@
     try {
       const res = await fetch(API_URL);
       const data = await res.json();
+      console.log('GET response raw:', data);
 
-      renderDraftTable(data);
+      // handle two possible formats:
+      // - array of objects [{date,type,unit,...}, ...]
+      // - array of rows [[header1,header2...],[row1col1,row1col2...],...]
+      let items = [];
+
+      if(Array.isArray(data) && data.length > 0 && typeof data[0] === 'object' && !Array.isArray(data[0])){
+        // already array of objects
+        items = data;
+      } else if(Array.isArray(data) && data.length > 1 && Array.isArray(data[0])){
+        // first row may be header; convert rows starting at index 1
+        // expected order: timestamp, date, type, unit, code_unit, hour_meter, type_service, notes, technician (some scripts may include fewer cols)
+        const rows = data;
+        const headerRow = rows[0].map(h => String(h).toLowerCase());
+        const start = 1;
+        for(let i = start; i < rows.length; i++){
+          const r = rows[i];
+          items.push({
+            timestamp: r[0],
+            date: r[1],
+            type: r[2],
+            unit: r[3],
+            code_unit: r[4],
+            hour_meter: r[5],
+            type_service: r[6],
+            notes: r[7],
+            technician: r[8]
+          });
+        }
+      } else {
+        items = [];
+      }
+
+      renderDraftTable(items);
     } catch(err){
-      console.error(err);
+      console.error('Error GET:', err);
       const tbody = document.querySelector('#draftTable tbody');
       tbody.innerHTML = '<tr><td colspan="8" class="small">Gagal memuat data. Cek koneksi atau API URL.</td></tr>';
     }
@@ -247,6 +282,7 @@
     tbody.innerHTML = '';
     if(!items || items.length === 0){
       tbody.innerHTML = '<tr><td colspan="8" class="small">Belum ada draft jadwal.</td></tr>';
+      window.__draft_items = [];
       return;
     }
 
@@ -256,8 +292,8 @@
         <td>${escapeHtml(it.date||'')}</td>
         <td>${escapeHtml(it.type||'')}</td>
         <td>${escapeHtml(it.unit||'')}</td>
-        <td>${escapeHtml(it.code_unit||'')}</td>
-        <td>${escapeHtml(it.hour_meter||'')}</td>
+        <td>${escapeHtml(it.code_unit||it.code||'')}</td>
+        <td>${escapeHtml(it.hour_meter||it.hm||'')}</td>
         <td>${escapeHtml(it.type_service||'')}</td>
         <td>${escapeHtml(it.notes||'')}</td>
         <td style="white-space:nowrap">
@@ -284,15 +320,16 @@
     doc.setFontSize(11);
     doc.text(`Date: ${item.date || '-'}`, 14, 34);
     doc.text(`Type: ${item.type || '-'}`, 14, 42);
-    doc.text(`Unit: ${item.unit || '-'}  Code: ${item.code_unit || '-'}`, 14, 50);
-    doc.text(`Hour Meter: ${item.hour_meter || '-'}`, 14, 58);
+    doc.text(`Unit: ${item.unit || '-'}  Code: ${item.code_unit || item.code || '-'}`, 14, 50);
+    doc.text(`Hour Meter: ${item.hour_meter || item.hm || '-'}`, 14, 58);
     doc.text(`Type Service: ${item.type_service || '-'}`, 14, 66);
     doc.text('Keterangan:', 14, 78);
     // wrap notes
     const notes = (item.notes || '-').toString();
     const split = doc.splitTextToSize(notes, 180);
     doc.text(split, 14, 86);
-    doc.save(`jadwal-${(item.timestamp?item.timestamp.replace(/[: ]/g,'_'):(Date.now()))}.pdf`);
+    const ts = item.timestamp ? String(item.timestamp).replace(/[: ]/g,'_') : Date.now();
+    doc.save(`jadwal-${ts}.pdf`);
   }
 
   // download all drafts as separate PDFs in sequence
