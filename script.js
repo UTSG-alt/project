@@ -1,7 +1,7 @@
 /* ---------------------------
    API Google Sheet
 --------------------------- */
-const API_URL = "https://script.google.com/macros/s/AKfycby6lcSpv3XyEBnNsLo2GyVOf3AkIPmV6L8oFikZbCxliM5lu6qxViEZf6t3U4YwFmI1CA/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwY3-8lU4dzML-BsDG_RLzIJefDntQ4WaNFKLrCl3jlsMhiSBtE6wxXfCtwVu_mvt7UdA/exec";
 ;
 ;
 
