@@ -3,7 +3,6 @@
 --------------------------- */
 const API_URL = "https://script.google.com/macros/s/AKfycbwY3-8lU4dzML-BsDG_RLzIJefDntQ4WaNFKLrCl3jlsMhiSBtE6wxXfCtwVu_mvt7UdA/exec";
 ;
-;
 
 /* ---------------------------
    Utilities: storage helpers
